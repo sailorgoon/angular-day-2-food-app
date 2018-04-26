@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const databaseUrl = 'mongodb://localhost:27017/kitchen'
+const Food = require('../models/food.schema');
+
 
 mongoose.connect(databaseUrl);
 
@@ -12,12 +13,19 @@ mongoose.connection.on('connected', () => {
 
 mongoose.connection.on('error', (error) => {
     console.log('mongoose connection error')
-})
-const food = [];
+});
+
 
 router.get('/', (req, res) => {
-    console.log(food)
-    res.send(food);
+    Food.find({})
+    .then((databack) => {
+        console.log(`data from databse: ${databack}`);
+        res.send(databack);
+    })
+    .catch((error) => {
+        console.log(`error with Food.find: ${error}`);
+        res.sendStatus(200);
+    })
 });
 
 router.post('/', (req, res) => {
