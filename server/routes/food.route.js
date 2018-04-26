@@ -29,10 +29,15 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const foodToAdd = (req.body)
-    console.log(req.body);
-    res.sendStatus(200);
-    food.push(foodToAdd);       
+    Food.create(req.body)
+    .then((response) => {
+        console.log(response);
+        res.sendStatus(200);
+    })    
+    .catch((error) => {
+        console.log(`error with Food.create: ${error}`)
+        res.sendStatus(200);
+    })
 });
 
 module.exports = router;
