@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="vendors/angular.min.js"></script>
     <script src="scripts/client.js"></script>
-
+    <link rel="stylesheet" href="styles/style.css">
     <title>Angular Full Stack Food App</title>
 </head>
     <h1>Angular Full Stack Food App</h1>
@@ -17,8 +17,26 @@
         <input ng-model="vm.newFood.deliciousnessrating" placeholder="deliciousness rating"/>
         <input ng-model="vm.newFood.is_hot" placeholder="is hot"/>
         <button ng-click="vm.addFood()">submit</button>
-        {{vm.food}}
+        <!-- {{vm.food}} -->
+        <h1 >{{food.name}} {{food.deliciousnessrating}} {{food.is_hot}}</h1>
+    
     </div>
+    <table>
+        <thead>
+          <tr>
+            <th>Food name</th>
+            <th>deliciousness rating</th>
+            <th>is it hot?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="food in vm.allFood">
+            <td >{{food.name}}</td>
+            <td>{{food.deliciousnessrating}}</td>
+            <td>{{food.is_hot}}</td>
+          </tr>
+        </tbody>
+      </table>
 </body>
 
 </html>

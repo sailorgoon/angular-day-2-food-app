@@ -7,19 +7,9 @@ app.controller('FoodController', ['$http', function ($http) {  //putting in brac
     var self = this;
     self.message = 'Konnichiwa';
 
-    $http({
-        method: 'GET',
-        url: '/food'
 
-    })
-        .then(function (response) {
-            console.log(response.data);
-        })
-        .catch(function (error) {
-            console.log('error on /food GET', error);
-        })
     self.newFood = {};
-
+getAllFoods();
 
     // self.createFood = function () {
     //     }    console.log(self.newFood);
@@ -32,6 +22,7 @@ app.controller('FoodController', ['$http', function ($http) {  //putting in brac
             })
             .then(function(response){
                 console.log(response);
+                getAllFoods();
                 // self.food.push(angular.copy(self.newFood));
         // console.log(self.food);
             })
@@ -39,6 +30,21 @@ app.controller('FoodController', ['$http', function ($http) {  //putting in brac
                 console.log('error on /food POST', error);
             })
         
+    };
+
+    function getAllFoods(){
+        $http({
+            method: 'GET',
+            url: '/food'
+    
+        })
+            .then(function (response) {
+                console.log(response.data);
+                self.allFood = response.data;
+            })
+            .catch(function (error) {
+                console.log('error on /food GET', error);
+            })
     }
 }]);
 
