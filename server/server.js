@@ -10,7 +10,7 @@ app.use(express.static('server/public'));
 
 
 
-const food = [];
+
 
 app.use('/food', foodRouter);
 
