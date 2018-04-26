@@ -1,17 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const bodyParser = require('body-parser');
 
-const food = [
-    {
-        name: 'tomato',
-        deliciousnessrating: 7,
-        is_hot: 'no'
-    }
-];
+app.use(bodyParser.urlencoded({extended:true})); 
 
-router.get('/', (req, res) => {
-    console.log(food)
-    res.send(food);
-});
+// const food = [
+//     {
+//         name: 'tomato',
+//         deliciousnessrating: 7,
+//         is_hot: false
+//     }
+// ];
+
+// router.get('/', (req, res) => {
+//     console.log(food)
+//     res.send(food);
+// });
+
+// router.post('/', (req, res) => {
+//     console.log(req.body.data);
+// });
 
 module.exports = router;
